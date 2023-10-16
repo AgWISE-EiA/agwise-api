@@ -1,7 +1,6 @@
 # api_v1/routes.py
 from flask import Blueprint, request, jsonify
-from sqlalchemy.orm import sessionmaker
-from orm.models import FrPotatoApi
+
 from potato.agwise_potato import AgWisePotato
 
 api_v1 = Blueprint('api_v1', __name__)

@@ -1,18 +1,10 @@
 from sqlalchemy import (
     Column,
-    Integer,
     DECIMAL,
-    Date,
-    DateTime,
-    ForeignKeyConstraint,
-    Index,
     String,
-    Table,
-    Text,
-    text,
 )
-from sqlalchemy.dialects.mysql import BIGINT, BIT, INTEGER
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.dialects.mysql import BIGINT
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 metadata = Base.metadata

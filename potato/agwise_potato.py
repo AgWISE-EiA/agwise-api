@@ -1,8 +1,6 @@
 from typing import Type
 
-import sqlalchemy
-from sqlalchemy import desc
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 
 from my_logger import MyLogger
 from orm.database_conn import MyDb
