@@ -8,7 +8,7 @@ services:
       - .:/app
     environment:
       FLASK_ENV: development
-      FLASK_APP: your_flask_app.api
+      FLASK_APP: agwise.potato
     depends_on:
       - db
     networks:
