@@ -41,7 +41,7 @@ class AgWisePotato:
         # Calculate the offset
         offset = (page - 1) * limit
 
-        query = query.limit(limit).offset(offset)
+        # query = query.limit(limit).offset(offset)
         results = query.all()
         session.close()
 

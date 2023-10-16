@@ -1,4 +1,25 @@
 $(document).ready(function () {
+
+    const dataTable = $("#data-table").DataTable({
+        columns: [{data: "id"}, {data: "Province"}, {data: "District"}, {data: "AEZ"}, {data: "Season"}, {data: "refYieldClass"}, {data: "lat_lon"}, {data: "Urea"}, {data: "DAP"}, {data: "NPK"}, {data: "expectedYieldReponse"}, {data: "totalFertilizerCost"}, {data: "netRevenue"}]
+    });
+
+    // Function to retrieve and populate data
+    function retrieveAndPopulateData(filterData) {
+        // Make an initial GET request to retrieve data on page load
+        $.ajax({
+            url: "/api/v1/fr-potato-api-input", type: "POST", // You can use GET or POST based on your API
+            contentType: "application/json", data: JSON.stringify(filterData), success: function (data) {
+                dataTable.rows.add(data).draw();
+            }, error: function (error) {
+                console.error("Error:", error);
+            },
+        });
+    }
+
+    // Call the function to retrieve and populate data on page load
+    retrieveAndPopulateData({initial: 0});
+
     $("#filter-button").on("click", function () {
         const Province = $("#Province").val();
         const District = $("#District").val();
@@ -7,46 +28,10 @@ $(document).ready(function () {
         const limit = $("#limit").val();
         const page = $("#page").val();
 
-        // Make a POST request to the API endpoint
-        $.ajax({
-            url: "/api/v1/fr-potato-api-input",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                Province: Province,
-                District: District,
-                AEZ: AEZ,
-                Season: Season,
-                limit: limit,
-                page: page,
-            }),
-            success: function (data) {
-                const tableBody = $("#table-body");
-                tableBody.empty(); // Clear previous data
+        const filterData = {
+            Province: Province, District: District, AEZ: AEZ, Season: Season, limit: limit, page: page,
+        };
 
-                $.each(data, function (index, item) {
-                    tableBody.append(
-                        `<tr>
-                            <td>${item.id}</td>
-                            <td>${item.Province}</td>
-                            <td>${item.District}</td>
-                            <td>${item.AEZ}</td>
-                            <td>${item.Season}</td>
-                            <td>${item.refYieldClass}</td>
-                            <td>${item.lat_lon}</td>
-                            <td>${item.Urea}</td>
-                            <td>${item.DAP}</td>
-                            <td>${item.NPK}</td>
-                            <td>${item.expectedYieldReponse}</td>
-                            <td>${item.totalFertilizerCost}</td>
-                            <td>${item.netRevenue}</td>
-                        </tr>`
-                    );
-                });
-            },
-            error: function (error) {
-                console.error("Error:", error);
-            },
-        });
+        retrieveAndPopulateData(filterData)
     });
 });
