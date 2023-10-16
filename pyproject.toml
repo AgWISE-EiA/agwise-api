@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "API to fetch potato planting data based on several filter prarameters"
 authors = ["Sammy Barasa <barsamms@gmail.com>"]
 readme = "README.md"
-packages = [{include = "agwise_potato"}]
+#packages = [{include = "agwise_potato"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
