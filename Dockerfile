@@ -20,4 +20,4 @@ COPY . /app
 EXPOSE 80
 
 # Define the command to run your Flask app
-CMD ["poetry", "run", "start"]
+CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
