@@ -22,15 +22,21 @@ class AgWisePotato:
 
         province = data.get('Province')
         season = data.get('Season')
-
-        # Parse the limit and offset parameters from the request
-        limit = data.get('limit', 100)  # Default limit is 100 records, change as needed
-        page = data.get('page', 1)  # Default page is 1, change as needed
+        district = data.get('District')
+        aez = data.get('AEZ')
 
         if province:
             query = query.filter(FrPotatoApi.Province.ilike(f"%{province}%"))
         if season:
             query = query.filter(FrPotatoApi.Season.ilike(f"%{season}%"))
+        if district:
+            query = query.filter(FrPotatoApi.District.ilike(f"%{district}%"))
+        if aez:
+            query = query.filter(FrPotatoApi.AEZ.ilike(f"%{aez}%"))
+
+        # Parse the limit and offset parameters from the request
+        limit = int(data.get('limit', 100))  # Default limit is 100 records, change as needed
+        page = int(data.get('page', 1))  # Default page is 1, change as needed
 
         # Calculate the offset
         offset = (page - 1) * limit
@@ -55,7 +61,7 @@ class AgWisePotato:
                 'Urea': item.Urea,
                 'DAP': item.DAP,
                 'NPK': item.NPK,
-                'expectedYieldResponse': item.expectedYieldReponse,
+                'expectedYieldReponse': item.expectedYieldReponse,
                 'totalFertilizerCost': item.totalFertilizerCost,
                 'netRevenue': item.netRevenue
             })

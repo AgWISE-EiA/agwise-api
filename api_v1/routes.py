@@ -7,7 +7,7 @@ from potato.agwise_potato import AgWisePotato
 api_v1 = Blueprint('api_v1', __name__)
 
 
-@api_v1.route('/planting-season', methods=['POST'])
+@api_v1.route('/fr-potato-api-input', methods=['POST'])
 def get_planting_season():
     data: object = request.get_json()
 
