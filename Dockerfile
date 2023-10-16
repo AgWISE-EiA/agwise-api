@@ -17,7 +17,7 @@ RUN poetry install --no-dev
 COPY . /app
 
 # Make port 80 available to the world outside this container
-EXPOSE 80
+EXPOSE 5000
 
 # Define the command to run your Flask app
 CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
