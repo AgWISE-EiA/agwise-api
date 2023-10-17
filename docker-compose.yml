@@ -8,19 +8,23 @@ services:
       - .:/app
     environment:
       FLASK_ENV: development
-#      FLASK_APP: agwise.potato
-#    depends_on:
-#      - db
+      DB_URL: ${DB_URL}
+      LOG_LEVEL: ${LOG_LEVEL}
+    depends_on:
+      - db
     networks:
       - my_network
 
+
   db:
-    image: mysql:5.7
+    image: mariadb:11.0.3
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: your_db_name
-      MYSQL_USER: your_db_user
-      MYSQL_PASSWORD: your_db_password
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./sql-migrations:/docker-entrypoint-initdb.d
     networks:
       - my_network
 
