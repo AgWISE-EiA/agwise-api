@@ -19,7 +19,7 @@ services:
   db:
     image: mariadb:11.0.3
     environment:
-      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+      MARIADB_ROOT_PASSWORD: ${ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
