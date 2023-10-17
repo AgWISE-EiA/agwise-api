@@ -31,5 +31,4 @@ EXPOSE 5000
 
 # Define the command to run your Flask app
 #CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
-#CMD ["gunicorn", "-c", "gunicorn_config.py", "wsgi.api:app"]
-CMD ["gunicorn", "--bind", "0.0.0.0", "wsgi:app"]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "wsgi:app"]
