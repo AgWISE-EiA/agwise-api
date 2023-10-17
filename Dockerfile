@@ -20,7 +20,7 @@ RUN poetry install
 
 # generate thr requirements.txt
 
-poetry export --without-hashes --format=requirements.txt > requirements.txt
+RUN poetry export --without-hashes --format=requirements.txt > requirements.txt
 # Copy the rest of the application code into the container
 COPY . /app
 
