@@ -2,7 +2,7 @@ from typing import Type
 
 from sqlalchemy.orm import sessionmaker
 
-from my_logger import MyLogger
+from app.my_logger import MyLogger
 from orm.database_conn import MyDb
 from orm.models import FrPotatoApi
 

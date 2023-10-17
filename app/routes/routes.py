@@ -1,9 +1,9 @@
-# api_v1/routes.py
+# routes/routes.py
 from flask import Blueprint, request, jsonify
 
-from potato.agwise_potato import AgWisePotato
+from app.potato.agwise_potato import AgWisePotato
 
-api_v1 = Blueprint('api_v1', __name__)
+api_v1 = Blueprint('routes', __name__)
 
 
 @api_v1.route('/fr-potato-api-input', methods=['POST'])
