@@ -34,8 +34,7 @@ services:
     image: amir20/dozzle:latest
     restart: unless-stopped
     networks:
-      - web
-      - internal
+      - my_network
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
