@@ -1,9 +1,13 @@
 version: '3'
 services:
-  app:
+  app-dev:
+    profiles: [ "dev" ]
     container_name: app
     hostname: app
-    build: .
+    image: tsobu/agwise-potato-api:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
     volumes:
@@ -17,6 +21,25 @@ services:
     networks:
       - my_network
 
+  app:
+    profiles: [ "prod" ]
+    container_name: app
+    hostname: app
+    image: tsobu/agwise-potato-api:production
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      DB_URL: ${DB_URL}
+      LOG_LEVEL: INFO
+    depends_on:
+      - db
+    networks:
+      - my_network
 
   db:
     container_name: db
@@ -55,9 +78,9 @@ services:
     environment:
       ADMINER_DEFAULT_DB_DRIVER: mysql
       ADMINER_DEFAULT_DB_HOST: db
-#      ADMINER_DEFAULT_DB_NAME: ${DB_SERVICE}
-#      ADMINER_DESIGN: ${THEME}
-#      ADMINER_PLUGINS: ${PLUGINS}
+    #      ADMINER_DEFAULT_DB_NAME: ${DB_SERVICE}
+    #      ADMINER_DESIGN: ${THEME}
+    #      ADMINER_PLUGINS: ${PLUGINS}
     restart: unless-stopped
     ports:
       - "8080:8080"
