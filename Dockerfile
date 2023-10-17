@@ -1,6 +1,10 @@
 # Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
+# Update the package list and install net-tools
+RUN apt-get update && apt-get install -y net-tools
+
+
 # Install Poetry
 RUN pip install poetry
 
