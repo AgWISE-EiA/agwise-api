@@ -48,5 +48,21 @@ services:
     ports:
       - "9999:8080"
 
+  adminer:
+    container_name: adminer
+    hostname: adminer
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_DB_DRIVER: mysql
+      ADMINER_DEFAULT_DB_HOST: db
+#      ADMINER_DEFAULT_DB_NAME: ${DB_SERVICE}
+#      ADMINER_DESIGN: ${THEME}
+#      ADMINER_PLUGINS: ${PLUGINS}
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+
 networks:
   my_network:
