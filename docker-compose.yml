@@ -20,11 +20,15 @@ services:
     container_name: db
     hostname: db
     image: mariadb:11.0.3
+    restart: unless-stopped
     environment:
+      MARIADB_ROOT_HOST: "%"
       MARIADB_ROOT_PASSWORD: ${ROOT_PASS}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASS}
+    ports:
+      - "3306:3306"
     volumes:
       - ./sql-migrations:/docker-entrypoint-initdb.d
     networks:
