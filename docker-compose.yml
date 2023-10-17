@@ -17,6 +17,8 @@ services:
 
 
   db:
+    container_name: db
+    hostname: db
     image: mariadb:11.0.3
     environment:
       MARIADB_ROOT_PASSWORD: ${ROOT_PASS}
