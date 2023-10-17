@@ -21,10 +21,15 @@ RUN poetry install
 # generate thr requirements.txt
 
 RUN poetry export --without-hashes --format=requirements.txt > requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+#RUN pip install gunicorn
+
 # Copy the rest of the application code into the container
 COPY . /app
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
 
 # Make port 80 available to the world outside this container
 EXPOSE 5000
