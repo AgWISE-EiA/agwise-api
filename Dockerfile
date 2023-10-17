@@ -30,10 +30,9 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . /app
 
 
-
 # Make port 80 available to the world outside this container
 EXPOSE 5000
 
 # Define the command to run your Flask app
-CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
-#CMD ["gunicorn", "-c", "gunicorn_config.py", "wsgi:app"]
+#CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
+CMD ["gunicorn", "-c", "gunicorn_config.py", "wsgi:app"]
