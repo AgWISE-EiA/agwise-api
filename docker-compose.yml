@@ -32,7 +32,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./sql-migrations:/docker-entrypoint-initdb.d
+      - "./sql-migration/agwise_potato.sql:/docker-entrypoint-initdb.d/1.sql"
     networks:
       - my_network
 
