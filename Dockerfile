@@ -18,11 +18,17 @@ COPY pyproject.toml poetry.lock /app/
 # Install project dependencies using Poetry
 RUN poetry install
 
+# generate thr requirements.txt
+
+poetry export --without-hashes --format=requirements.txt > requirements.txt
 # Copy the rest of the application code into the container
 COPY . /app
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Make port 80 available to the world outside this container
 EXPOSE 5000
 
 # Define the command to run your Flask app
-CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
+#CMD [ "poetry", "run", "python", "-m", "flask", "run", "--host=0.0.0.0" ]
+CMD ["gunicorn", "--bind", "0.0.0.0:", "wsgi:app"]
