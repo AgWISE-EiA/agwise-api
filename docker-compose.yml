@@ -1,7 +1,6 @@
 version: '3'
 services:
-  app-dev:
-#    profiles: [ "dev" ]
+  app:
     container_name: app
     hostname: app
     image: tsobu/agwise-potato-api:dev
@@ -16,26 +15,6 @@ services:
       FLASK_ENV: development
       DB_URL: ${DB_URL}
       LOG_LEVEL: ${LOG_LEVEL}
-    depends_on:
-      - db
-    networks:
-      - my_network
-
-  app:
-#    profiles: [ "prod" ]
-    container_name: app
-    hostname: app
-    image: tsobu/agwise-potato-api:production
-    build:
-      context: .
-      dockerfile: Dockerfile.prod
-    ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
-    environment:
-      DB_URL: ${DB_URL}
-      LOG_LEVEL: INFO
     depends_on:
       - db
     networks:

@@ -24,7 +24,5 @@ COPY . /app
 # Make port 80 available to the world outside this container
 EXPOSE 5000
 
-RUN poetry shell
-
 # Define the command to run your Flask app
-CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "wsgi:app"]
+CMD ["gunicorn"  , "-b", "0.0.0.0", "wsgi:app"]
