@@ -3,7 +3,7 @@ services:
   app:
     container_name: app
     hostname: app
-    image: tsobu/agwise-potato-api:dev
+    image: iita/agwise-potato-api:latest
     build:
       context: .
       dockerfile: Dockerfile
