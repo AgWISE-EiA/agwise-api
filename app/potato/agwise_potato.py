@@ -48,17 +48,17 @@ class AgWisePotato:
         for item in results:
             result.append({
                 'id': item.id,
-                'Province': item.Province,
-                'District': item.District,
-                'AEZ': item.AEZ,
-                'Season': item.Season,
-                'refYieldClass': item.refYieldClass,
-                'lat_lon': f'{item.latitude},{item.longitude}',
-                'Urea': item.Urea,
-                'DAP': item.DAP,
-                'NPK': item.NPK,
-                'expectedYieldReponse': item.expectedYieldReponse,
-                'totalFertilizerCost': item.totalFertilizerCost,
+                'province': item.Province,
+                'district': item.District,
+                'aez': item.AEZ,
+                'season': item.Season,
+                'currentYield': item.refYieldClass,
+                'coordinates': f'{item.latitude},{item.longitude}',
+                'urea': item.Urea,
+                'dap': item.DAP,
+                'npk': item.NPK,
+                'expectedYield': item.expectedYieldReponse,
+                'fertilizerCost': item.totalFertilizerCost,
                 'netRevenue': item.netRevenue
             })
 

@@ -9,10 +9,9 @@ api_v1 = Blueprint('api_v1', __name__)
 
 # limiter.limit("1/minute")(api_v1)
 
-
-@api_v1.route('/fr-potato-api-input', methods=['POST'])
-@limiter.limit("1/minute")
-def get_planting_season():
+@api_v1.route('/fr-potato', methods=['POST'])
+@limiter.limit("30/minute")
+def list_all_data():
     data: object = request.get_json()
 
     if not data:

@@ -17,6 +17,12 @@ def index():  # put application's code here
     return render_template("index.html")
 
 
+@app.route('/search', methods=['GET'])
+@limiter.exempt
+def form():  # put application's code here
+    return render_template("form-filter.html")
+
+
 @app.errorhandler(429)
 def rate_limit_error(error):
     response = jsonify({
