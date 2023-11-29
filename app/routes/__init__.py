@@ -20,3 +20,39 @@ def list_all_data():
     agwise = AgWisePotato()
     result = agwise.filter_data(data=data)
     return jsonify(result)
+
+
+@api_v1.route('/fertilizer-data', methods=['GET'])
+@limiter.limit("30/minute")
+def fetch_fertilizer_data():
+    lat, lon = None, None
+
+    coordinates = request.args.get('coordinates')
+    region = request.args.get('region')
+    province = request.args.get('province')
+    season = request.args.get('season')
+    district = request.args.get('district')
+    limit = request.args.get('limit', 100)
+    page = request.args.get('page', 1)
+
+    # Split coordinates into latitude and longitude
+    if coordinates:
+        try:
+            lat, lon = map(float, coordinates.split(','))
+        except ValueError:
+            return jsonify({'error': f'Invalid coordinates format : {coordinates}'}), 400
+
+    data = {
+        'Province': province,
+        'Season': season,
+        'District': district,
+        'AEZ': region,
+        'coordinates': coordinates,
+        'lat': lat,
+        'lon': lon,
+        'limit': limit,
+        'page': page
+    }
+    agwise = AgWisePotato()
+    result = agwise.filter_data(data=data)
+    return jsonify(result)

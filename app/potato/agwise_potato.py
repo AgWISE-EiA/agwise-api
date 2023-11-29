@@ -39,7 +39,7 @@ class AgWisePotato:
         # Calculate the offset
         offset = (page - 1) * limit
 
-        # query = query.limit(limit).offset(offset)
+        query = query.limit(limit).offset(offset)
         results = query.all()
         session.close()
 
@@ -53,7 +53,9 @@ class AgWisePotato:
                 'aez': item.AEZ,
                 'season': item.Season,
                 'currentYield': item.refYieldClass,
-                'coordinates': f'{item.latitude},{item.longitude}',
+                'lat': item.latitude,
+                'lon': item.longitude,
+                # 'coordinates': f'{item.latitude},{item.longitude}',
                 'urea': item.Urea,
                 'dap': item.DAP,
                 'npk': item.NPK,

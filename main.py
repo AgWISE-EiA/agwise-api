@@ -8,6 +8,8 @@ app = Flask(__name__)
 app.register_blueprint(api_v1, url_prefix='/api/v1')
 
 app.config['RATELIMIT_HEADERS_ENABLED'] = True
+app.json.sort_keys = False
+
 limiter.init_app(app)
 
 
@@ -25,21 +27,23 @@ def form():  # put application's code here
 
 @app.errorhandler(429)
 def rate_limit_error(error):
+    status_code = 429
     response = jsonify({
         "error": str(error),
-        "status": 429
+        "status": status_code
     })
-    response.status_code = 429  # Set the status code for error responses
+    response.status_code = status_code  # Set the status code for error responses
     return response
 
 
 @app.errorhandler(Exception)
 def handle_error(error):
+    status_code = 500
     response = jsonify({
         "error": str(error),
-        "status": 500
+        "status": status_code
     })
-    response.status_code = 500  # Set the status code for error responses
+    response.status_code = status_code  # Set the status code for error responses
     return response
 
 
