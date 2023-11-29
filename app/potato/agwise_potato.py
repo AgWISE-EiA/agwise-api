@@ -13,7 +13,7 @@ class AgWisePotato:
         self.logging = MyLogger()
         self.session = sessionmaker(bind=self.db_engine)
 
-    def filter_data(self, data):
+    def filter_data(self, data, paginate=True):
         session = self.session()
         query = session.query(FrPotatoApi)
         self.logging.debug(f"Processing requests --> {data}")
@@ -54,8 +54,12 @@ class AgWisePotato:
                 'aez': item.AEZ,
                 'season': item.Season,
                 'currentYield': item.refYieldClass,
-                'lat': item.latitude,
-                'lon': item.longitude,
+                # 'lat': item.latitude,
+                # 'lon': item.longitude,
+                'coordinates': {
+                    'lat': item.latitude,
+                    'lon': item.longitude,
+                },
                 # 'coordinates': f'{item.latitude},{item.longitude}',
                 'urea': float(item.Urea),
                 'dap': float(item.DAP),

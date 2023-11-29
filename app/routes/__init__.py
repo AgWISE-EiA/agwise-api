@@ -34,6 +34,7 @@ def fetch_fertilizer_data():
     district = request.args.get('district')
     limit = request.args.get('limit', 100)
     page = request.args.get('page', 1)
+    paginate = request.args.get('paginate', False)
 
     # Split coordinates into latitude and longitude
     if coordinates:
