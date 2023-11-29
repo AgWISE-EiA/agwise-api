@@ -56,12 +56,12 @@ class AgWisePotato:
                 'lat': item.latitude,
                 'lon': item.longitude,
                 # 'coordinates': f'{item.latitude},{item.longitude}',
-                'urea': item.Urea,
-                'dap': item.DAP,
-                'npk': item.NPK,
-                'expectedYield': item.expectedYieldReponse,
-                'fertilizerCost': item.totalFertilizerCost,
-                'netRevenue': item.netRevenue
+                'urea': float(item.Urea),
+                'dap': float(item.DAP),
+                'npk': float(item.NPK),
+                'expectedYield': float(item.expectedYieldReponse),
+                'fertilizerCost': float(item.totalFertilizerCost),
+                'netRevenue': float(item.netRevenue)
             })
 
         return result
