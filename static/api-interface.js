@@ -24,7 +24,7 @@ $(document).ready(function () {
         $.ajax({
             url: "/api/v1/fr-potato", type: "POST", // You can use GET or POST based on your API
             contentType: "application/json", data: JSON.stringify(filterData), success: function (data) {
-                dataTable.rows.add(data).draw();
+                dataTable.rows.add(data.data).draw();
             }, error: function (xhr, status, error) {
                 const {error: errorMessage, status: errorStatus} = $.parseJSON(xhr.responseText);
                 $("#errorAlert").html("<strong>Error " + errorStatus + ":</strong> " + errorMessage).show();

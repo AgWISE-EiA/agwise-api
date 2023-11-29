@@ -70,7 +70,9 @@ class AgWisePotato:
             'pagination': {
                 'page': page,
                 'per_page': limit,
-                'total_pages': total_pages
+                'total_records': total_records,
+                'total_pages': total_pages,
+                'last_page': total_pages
             }
         }
         return data
