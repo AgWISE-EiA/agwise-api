@@ -39,6 +39,7 @@ class AgWisePotato:
         # Calculate the offset
         offset = (page - 1) * limit
 
+        total_records = query.count()
         query = query.limit(limit).offset(offset)
         results = query.all()
         session.close()
@@ -63,5 +64,13 @@ class AgWisePotato:
                 'fertilizerCost': float(item.totalFertilizerCost),
                 'netRevenue': float(item.netRevenue)
             })
-
-        return result
+        total_pages = (total_records // limit + (1 if total_records % limit != 0 else 0))
+        data = {
+            'data': result,
+            'pagination': {
+                'page': page,
+                'per_page': limit,
+                'total_pages': total_pages
+            }
+        }
+        return data
