@@ -18,7 +18,7 @@ def list_all_data():
         return jsonify({'error': 'Missing JSON data in the request body'}), 400
 
     agwise = AgWisePotato()
-    result = agwise.filter_data(data=data)
+    result = agwise.filter_data(filter_data=data, paginate=False)
     return jsonify(result)
 
 
@@ -34,7 +34,7 @@ def fetch_fertilizer_data():
     district = request.args.get('district')
     limit = request.args.get('limit', 100)
     page = request.args.get('page', 1)
-    paginate = request.args.get('paginate', False)
+    paginate = request.args.get('paginate', True)
 
     # Split coordinates into latitude and longitude
     if coordinates:
@@ -55,5 +55,5 @@ def fetch_fertilizer_data():
         'page': page
     }
     agwise = AgWisePotato()
-    result = agwise.filter_data(data=data)
+    result = agwise.filter_data(filter_data=data, paginate=paginate)
     return jsonify(result)

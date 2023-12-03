@@ -17,7 +17,11 @@ colorlog = "^6.7.0"
 gunicorn = "^21.2.0"
 waitress = "^2.1.2"
 flask-limiter = "^3.5.0"
+flask-openapi3 = {extras = ["all"], version = "^3.0.1"}
 
+
+[tool.poetry.group.dev.dependencies]
+flask-openapi3 = {extras = ["all"], version = "^3.0.1"}
 
 [build-system]
 requires = ["poetry-core"]
