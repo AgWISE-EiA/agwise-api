@@ -8,7 +8,7 @@ load_dotenv(verbose=True)
 
 class MyDb:
     db_engine = None
-    db_url: str = environ.get("DB_URL", "mysql://root:root@localhost/agwise_potato")
+    db_url: str = environ.get("DB_URL", "mysql+pymysql://root:@localhost/agwise_api")
     debug: str | None = environ.get("LOG_LEVEL", None)
     debug_db = False
     if debug == "DEBUG":
