@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "agwise-potato"
+name = "agwise-api"
 version = "1.0.0"
 description = "API to fetch potato planting data based on several filter prarameters"
 authors = ["Sammy Barasa <barsamms@gmail.com>"]
