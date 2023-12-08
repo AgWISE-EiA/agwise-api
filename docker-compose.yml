@@ -14,7 +14,8 @@ services:
     environment:
       FLASK_ENV: development
       DB_URL: ${DB_URL}
-      LOG_LEVEL: ${LOG_LEVEL:-debug}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      DEBUG_DB: ${LOG_LEVEL:-0}
     depends_on:
       - db
     networks:
@@ -27,10 +28,10 @@ services:
     restart: unless-stopped
     environment:
       MARIADB_ROOT_HOST: "%"
-      MARIADB_ROOT_PASSWORD: ${ROOT_PASS}
-      MARIADB_DATABASE: ${DB_NAME}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD: ${DB_PASS}
+      MARIADB_ROOT_PASSWORD: ${ROOT_PASS:-root}
+      MARIADB_DATABASE: ${DB_NAME:-agwise_api}
+      MARIADB_USER: ${DB_USER:-root}
+      MARIADB_PASSWORD: ${DB_PASS:-root}
     ports:
       - "3306:3306"
     volumes:

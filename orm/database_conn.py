@@ -9,9 +9,8 @@ load_dotenv(verbose=True)
 class MyDb:
     db_engine = None
     db_url: str = environ.get("DB_URL", "mysql+pymysql://root:@localhost/agwise_api")
-    debug: str | None = environ.get("LOG_LEVEL", None)
-    debug_db = False
-    if debug == "DEBUG":
+    debug_db = environ.get("DEBUG_DB", 0)
+    if debug_db != 0:
         debug_db = True
 
     def __new__(cls, *args, **kwargs):
