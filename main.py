@@ -1,11 +1,22 @@
 from flask import Flask, render_template, jsonify
-from flask_openapi3 import Info, Tag, OpenAPI, Server
+from flask_openapi3 import Info, Tag, OpenAPI, Server, Contact, License
 from pydantic import BaseModel
 
 from app.core import limiter
 from app.routes import api_v1
 
-info = Info(title="AgWise API", version="1.0.0")
+contact = Contact(name="Munywele Sammy", email="sammy@munywele.co.ke", url="https://munywele.co.ke")
+
+apiLicense = License(
+    name="Apache 2.0",
+    identifier="Apache-2.0"
+)
+
+info = Info(title="AgWise API",
+            contact=contact,
+            license=apiLicense,
+            termsOfService="https://agwise.cgiar.org/terms-of-service",
+            version="1.0.0")
 
 servers = [
     Server(url="http://127.0.0.1:5000"),
