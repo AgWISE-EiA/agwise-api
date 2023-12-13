@@ -40,7 +40,7 @@ class MyLogger:
             )
 
             now = datetime.datetime.now()
-            dirname = "./logs"
+            dirname = "../logs"
 
             if not path.isdir(dirname):
                 mkdir(dirname)

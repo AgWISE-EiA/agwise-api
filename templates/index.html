@@ -5,15 +5,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
-{#    <link rel="icon" type="image/ico" href="static/favicon.ico">#}
+    {#    <link rel="icon" type="image/ico" href="static/favicon.ico">#}
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-{#    <script src="{{ url_for('static', filename='api-interface.js') }}"></script>#}
+    {#    <script src="{{ url_for('static', filename='api-interface.js') }}"></script>#}
 </head>
 <body>
 <div class="container-fluid">
     <h1 class="mt-5">Filter and Paginate Fr Potato API Data</h1>
 
     <div id="results" class="mt-2 mb-5">
+        <div class="alert alert-danger mt-3" id="errorAlert" style="display: none;"></div>
+
+        <a href="/search" class="btn btn-dark mb-3">Open advanced search form</a>
+
         <table id="data-table" class="table table-hover table-bordered">
             <thead>
             <tr>
@@ -22,12 +26,13 @@
                 <th>District</th>
                 <th>AEZ</th>
                 <th>Season</th>
-                <th>Ref Yield Class</th>
-                <th>Lat/Lon</th>
+                <th>Lat</th>
+                <th>Lon</th>
                 <th>Urea</th>
                 <th>DAP</th>
                 <th>NPK</th>
-                <th>Expected Yield Response</th>
+                <th>Current yield</th>
+                <th>Expected yield</th>
                 <th>Total Fertilizer Cost</th>
                 <th>Net Revenue</th>
             </tr>
