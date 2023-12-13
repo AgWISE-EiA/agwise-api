@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "agwise-potato"
+name = "agwise-api"
 version = "1.0.0"
 description = "API to fetch potato planting data based on several filter prarameters"
 authors = ["Sammy Barasa <barsamms@gmail.com>"]
 readme = "README.md"
-packages = [{include = "agwise_potato"}]
+#packages = [{include = "agwise_potato"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -14,7 +14,14 @@ python-dotenv = "^1.0.0"
 pymysql = "^1.1.0"
 #typer = {extras = ["all"], version = "^0.9.0"}
 colorlog = "^6.7.0"
+gunicorn = "^21.2.0"
+waitress = "^2.1.2"
+flask-limiter = "^3.5.0"
+flask-openapi3 = {extras = ["all"], version = "^3.0.1"}
 
+
+[tool.poetry.group.dev.dependencies]
+flask-openapi3 = {extras = ["all"], version = "^3.0.1"}
 
 [build-system]
 requires = ["poetry-core"]
